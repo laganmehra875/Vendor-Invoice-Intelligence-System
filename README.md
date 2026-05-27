@@ -77,6 +77,10 @@ Ensure the SQLite database file `inventory.db` is correctly located inside the `
 
 ---
 
+![Database auditing.png](Database%20auditing.png)
+
+---
+
 ## 🏋️‍♂️ Model Training Pipelines
 
 If you wish to re-train the machine learning models on updated dataset:
@@ -94,6 +98,10 @@ This pipeline aggregates transaction data, applies business anomaly labels (e.g.
 python "Invoice flagginng/train.py"
 ```
 *Models will be saved to:* `Invoice flagginng/model/predict_flag_invoice.pkl` and `Invoice flagginng/model/scaler.pkl`
+
+---
+
+![visualize fright descrip..png](visualize%20fright%20descrip..png)
 
 ---
 
@@ -120,6 +128,11 @@ To run the interactive Streamlit application, execute:
 streamlit run app.py
 ```
 Open [http://localhost:8501](http://localhost:8501) in your browser to interact with the system.
+
+
+
+---
+![predictive model and metriccs.png](predictive%20model%20and%20metriccs.png)
 
 ---
 
