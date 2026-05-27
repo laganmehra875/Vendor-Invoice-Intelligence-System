@@ -11,6 +11,9 @@ This application provides procurement, finance, and logistics departments with a
 https://vendor-invoice-intelligence-system-mguunoecrprbi86zjyjutp.streamlit.app/
 ```
 
+
+https://github.com/laganmehra875/Vendor-Invoice-Intelligence-System/blob/main/Vendor-Invoice-Intelligence-System%20Warehouse.png
+
 ---
 
 ## 🚀 Key Features
