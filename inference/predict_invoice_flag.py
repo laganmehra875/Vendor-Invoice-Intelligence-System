@@ -2,14 +2,19 @@ import joblib
 import pandas as pd
 import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(BASE_DIR)
+
 # Possible paths for the model and scaler to ensure it runs from any working directory
 MODEL_PATHS = [
+    os.path.join(PROJECT_ROOT, "Invoice flagginng", "model", "predict_flag_invoice.pkl"),
     "Invoice flagginng/model/predict_flag_invoice.pkl",
     "model/predict_flag_invoice.pkl",
     "models/predict_flag_invoice.pkl"
 ]
 
 SCALER_PATHS = [
+    os.path.join(PROJECT_ROOT, "Invoice flagginng", "model", "scaler.pkl"),
     "Invoice flagginng/model/scaler.pkl",
     "model/scaler.pkl",
     "models/scaler.pkl"

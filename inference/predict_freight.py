@@ -1,7 +1,10 @@
+import os
 import joblib
-import pandas as pd 
+import pandas as pd
 
-MODEL_PATH="models/predict_freight_model.pkl"
+# Use absolute path relative to this script's directory to ensure model can be loaded from anywhere
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(os.path.dirname(BASE_DIR), "models", "predict_freight_model.pkl")
 
 
 def load_model(model_path: str = MODEL_PATH):

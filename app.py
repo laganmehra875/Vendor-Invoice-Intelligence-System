@@ -21,7 +21,9 @@ st.set_page_config(
 )
 
 # DB path configuration
-DB_PATH = "data/inventory.db"
+# Use absolute path relative to the script directory to avoid file-not-found errors
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "data", "inventory.db")
 
 @st.cache_data
 def load_database_invoices():
