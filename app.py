@@ -24,16 +24,20 @@ st.set_page_config(
 # Use absolute path relative to the script directory to avoid file-not-found errors
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "data", "inventory.db")
+SAMPLE_DB_PATH = os.path.join(BASE_DIR, "data", "sample_inventory.db")
 
 @st.cache_data
 def load_database_invoices():
     """
     Load purchase and vendor invoice data from the local SQLite database.
     """
-    if not os.path.exists(DB_PATH):
+    # Use full database if it exists, otherwise fall back to sample database
+    active_path = DB_PATH if os.path.exists(DB_PATH) else SAMPLE_DB_PATH
+    
+    if not os.path.exists(active_path):
         return None
     
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(active_path)
     query = """
     WITH purchase_agg AS (
         SELECT 
@@ -264,15 +268,18 @@ if app_mode == "Single Invoice Predictor":
 
 elif app_mode == "Database Audit Center":
     st.markdown("### 🗄️ Database Auditing and Intelligence Portal")
-    st.write("Connected directly to `data/inventory.db`. Extract all registered vendor invoices and perform instant compliance audits at scale.")
+    
+    # Check which database file is being loaded
+    db_file_used = "inventory.db" if os.path.exists(DB_PATH) else "sample_inventory.db"
+    st.write(f"Connected directly to `data/{db_file_used}`. Extract all registered vendor invoices and perform instant compliance audits at scale.")
     
     with st.spinner("Connecting to SQLite database and fetching invoices..."):
         db_df = load_database_invoices()
         
     if db_df is None:
-        st.error("Error: Could not locate `data/inventory.db`. Please ensure the database file is placed in your project's data directory.")
+        st.error("Error: Could not locate `data/inventory.db` or `data/sample_inventory.db`. Please ensure a database file is placed in your project's data directory.")
     else:
-        st.success(f"Connected to database successfully! Loaded {len(db_df)} invoices.")
+        st.success(f"Connected to database successfully! Loaded {len(db_df)} invoices ({db_file_used}).")
         
         # Display Database Stats
         stat_col1, stat_col2, stat_col3 = st.columns(3)

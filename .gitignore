@@ -24,3 +24,4 @@ ENV/
 # Large database files
 *.db
 data/*.db
+!data/sample_inventory.db
